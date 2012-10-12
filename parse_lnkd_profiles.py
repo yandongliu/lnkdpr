@@ -3,34 +3,24 @@ import re
 import os
 
 def parse(fn):
-  #print 'file:'+fn
   name=None
   headline=None
   current_pos=None
   with open(fn,'r') as f:
     content=f.read()
-    #print content
 
     m=p_headline.findall(content)
-    #print m
     if m:
       headline= m[0].strip()
 
     m=p_name.findall(content)
-    #print m
     if m:
       name= (m[0][0]+' '+m[0][1]).strip()
 
     m=p_current.findall(content)
     if m:
-      #current=m[0]
-      #print 'CURRENT1:',m
-      #print 'CURRENT1:',m
-      #print 'CURRENT:',m[0].replace('\n',' ')
       current=p_tag.sub('',m[0].replace('\n',' '))
       current_pos=current.replace('  ',' ').strip()
-      #print 'CURRENT:',current
-      #jprint 'CURRENT:',current
   return name,headline,current_pos
     
 p_headline=re.compile('<p class="headline-title title" style="display:block">(.*?)</p>',re.MULTILINE|re.DOTALL)
