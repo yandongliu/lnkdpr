@@ -2,7 +2,7 @@ import sys
 import re
 import os
 
-def get_title(fn):
+def parse(fn):
   #print 'file:'+fn
   name=None
   headline=None
@@ -39,12 +39,17 @@ p_current=re.compile('<ul class="current">\n*<li>(.*?)\n*</li>',re.MULTILINE|re.
 str_current='<ul class="current">\n*<li>(.*?)\n*</li>'
 p_tag = re.compile(r'<[^>]+>')
 data_dir='/home/ubuntu/linkedin/data/'
-view_dir='./view/'
+#view_dir='./view/'
+
+cnt=0
 
 for subdir in os.listdir(data_dir):
   for fn in os.listdir(data_dir+subdir):
-    name,hl,current_pos=get_title(data_dir+subdir+'/'+fn)
+    name,hl,current_pos=parse(data_dir+subdir+'/'+fn)
     print 'id:%s'%fn.split('__')[4].split('?')[0]
     print 'name:%s'%name
     print 'headline:%s'%hl
     print 'current position:%s'%current_pos
+    cnt+=1
+    if cnt%1000==0:
+      print >>sys.stderr, 'processed %d profiles'%cnt
