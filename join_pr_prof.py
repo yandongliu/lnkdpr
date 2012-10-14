@@ -25,6 +25,6 @@ with open(fn_pr,'r') as f:
     cols=l.split(' ')
     if cols[0] in x:
       p=x[cols[0]]
-      print 'id:%s\tname:%s\theadline:%s\tcurrent_pos:%s\t%s\tscore:%s'%(cols[0],p['name'],p['headline'],p['current position'],p['companies'],cols[1])
+      print 'id:%s\tname:%s\theadline:%s\tcurrent_pos:%s\tcompanies:%s\tscore:%s'%(cols[0],p['name'],p['headline'],p['current position'],p['companies'],cols[1])
     else:
-      print 'id:%s\tname:%s\theadline:%s\tcurrent_pos:%s\t%s\tscore:%s'%(cols[0],'-','-','-','-',cols[1])
+      print 'id:%s\tname:%s\theadline:%s\tcurrent_pos:%s\tcompanies:%s\tscore:%s'%(cols[0],'-','-','-','-',cols[1])
