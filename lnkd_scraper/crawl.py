@@ -58,11 +58,11 @@ def download_url(url,links_crawled,cj):
   print 'downloading link:'+url
   #global links_crawled
   links_crawled.add(url)
-  br=get_browser()
-  r=br.open(url) 
+  br = get_browser()
+  r = br.open(url) 
   #print r
   #print r.info()
-  html= r.read() 
+  html = r.read() 
   cj.save(fn_linkedcookie)
   br.close()
   del br
@@ -115,8 +115,8 @@ def read_tocrawl_links(q):
   with open('tocrawl.txt','r') as f:
     for l in f:  
       try:
-        name,url=l.strip().split('\t') 
-        q.put((url,name))
+        name, url = l.strip().split('\t') 
+        q.put((url, name))
       except Exception,ex:
         print l
         print ex
@@ -138,7 +138,7 @@ def get_browser():
   br.set_handle_robots(False) 
   br.set_cookiejar(cj) 
   br.set_handle_equiv(True)
-  br.set_handle_gzip(True)
+  br.set_handle_gzip(False)
   br.set_handle_redirect(True)
   br.set_handle_referer(True)
   br.set_handle_robots(False)
